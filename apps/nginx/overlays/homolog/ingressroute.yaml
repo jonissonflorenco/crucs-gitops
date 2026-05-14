@@ -1,0 +1,15 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: crucs-homolog
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: PathPrefix(`/crucs`)
+      kind: Rule
+      services:
+        - name: nginx
+          port: 80
+      middlewares:
+        - name: crucs-homolog-strip-prefix
